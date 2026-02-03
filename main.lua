@@ -131,6 +131,20 @@ function love.update(dt)
 
         -- if pipe is no longer visible past left edge, remove it from scene
         if pipe.x < -pipe.width then
+            pipe.remove = true
+        else
+            pipe.remove = false
+        end
+    end
+
+    -- remove any flagged pipes
+    -- we need this second loop, rather than deleting in the previous loop, because
+    -- modifying the table in-place without explicit keys will result in skipping the
+    -- next pipe, since all implicit keys (numerical indices) are automatically shifted
+    -- down after a table removal
+    for k, pair in pairs(pipes) do
+        if pair.remove then
+            print('Removed pipe!')
             table.remove(pipes, k)
         end
     end
