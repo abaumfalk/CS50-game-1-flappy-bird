@@ -52,6 +52,9 @@ local GROUND_SCROLL_SPEED = 60
 -- point at which we should loop our background back to X 0
 local BACKGROUND_LOOPING_POINT = 413
 
+-- point at which we should loop our ground back to X 0
+local GROUND_LOOPING_POINT = 514
+
 -- our bird sprite
 local bird = Bird()
 
@@ -111,7 +114,7 @@ function love.update(dt)
 
     -- scroll ground by preset speed * dt, looping back to 0 after the screen width passes
     groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) 
-        % VIRTUAL_WIDTH
+        % GROUND_LOOPING_POINT
 
     spawnTimer = spawnTimer + dt
 
